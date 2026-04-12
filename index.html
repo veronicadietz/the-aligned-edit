@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Aligned Edit — Listen</title>
+  <meta name="description" content="A diagnostic podcast for identity-led founders. New episodes every week from Veronica Dietz." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23283618'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='serif' fill='%23C4500A'>V</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #C4500A;
+      --green: #283618;
+      --cream: #FAF7F2;
+      --cream-dark: #F0EBE3;
+      --text: #1a1a18;
+      --muted: #7a7468;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--green);
+      color: var(--cream);
+      padding: 64px 32px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: var(--orange);
+      border-radius: 50%;
+      opacity: 0.12;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 40px;
+      width: 180px; height: 180px;
+      border: 1px solid rgba(250,247,242,0.15);
+      border-radius: 50%;
+    }
+
+    .header-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .header-desc {
+      font-size: 14px;
+      color: rgba(250,247,242,0.7);
+      max-width: 480px;
+      line-height: 1.8;
+    }
+
+    .listen-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .listen-links a {
+      display: inline-block;
+      padding: 9px 18px;
+      border: 1px solid rgba(250,247,242,0.3);
+      border-radius: 2px;
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .listen-links a:hover {
+      background: rgba(250,247,242,0.08);
+      border-color: rgba(250,247,242,0.5);
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ─── FEATURED ─── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      padding: 52px 0 24px;
+      border-bottom: 1px solid var(--cream-dark);
+      margin-bottom: 32px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 600px) {
+      .featured-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .featured-grid .card:first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--cream-dark);
+      padding: 28px 28px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(40,54,24,0.08);
+    }
+
+    .card.hero {
+      display: grid;
+      gap: 0;
+    }
+
+    @media (min-width: 600px) {
+      .card.hero {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+        padding: 36px 36px 32px;
+      }
+    }
+
+    .card-episode-num {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .card.hero .card-title {
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+    }
+
+    .card-date {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .card-cta {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .card-cta::after {
+      content: ' →';
+    }
+
+    .new-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--orange);
+      color: white;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ─── ARCHIVE ─── */
+    .archive-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archive-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s;
+    }
+
+    .archive-item:first-child { border-top: 1px solid var(--cream-dark); }
+
+    .archive-item:hover .archive-title {
+      color: var(--orange);
+    }
+
+    .archive-num {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .archive-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+
+    .archive-date {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ─── LOADING / ERROR ─── */
+    .status {
+      padding: 60px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--cream-dark);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--green);
+      color: rgba(250,247,242,0.5);
+      text-align: center;
+      padding: 32px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    footer a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    /* ─── FADE IN ─── */
+    .fade-in {
+      animation: fadeIn 0.4s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <p class="eyebrow">Veronica Dietz</p>
+      <h1>The Aligned Edit</h1>
+      <p class="header-desc">A diagnostic podcast for identity-led founders. Each episode locates the load-bearing issue underneath the surface problem.</p>
+      <div class="listen-links">
+        <a href="https://open.spotify.com/show/2QikcYUpQiOXq9zy6pSvab" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://podcasts.apple.com/us/podcast/the-aligned-edit-with-veronica-dietz/id1860989748" target="_blank" rel="noopener">Apple Podcasts</a>
+        <a href="https://media.rss.com/the-aligned-edit-with-veronica-dietz/feed.xml" target="_blank" rel="noopener">RSS Feed</a>
+        <a href="https://veronicadietz.com" target="_blank" rel="noopener">veronicadietz.com</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <p class="section-label">Recent Episodes</p>
+    <div id="featured" class="featured-grid">
+      <div class="status"><div class="spinner"></div>Loading episodes...</div>
+    </div>
+
+    <p class="section-label">All Episodes</p>
+    <div id="archive" class="archive-list">
+      <div class="status">Loading archive...</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> <a href="https://veronicadietz.com">Veronica Dietz</a> &mdash; VD Advisory Group</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ─── CONFIG ───────────────────────────────────────────────
+    const FEED_URL = 'https://media.rss.com/the-aligned-edit-with-veronica-dietz/feed.xml';
+    // Multiple CORS proxies — tried in order until one works
+    const PROXIES = [
+      'https://api.allorigins.win/get?url=' + encodeURIComponent(FEED_URL),
+      'https://corsproxy.io/?' + encodeURIComponent(FEED_URL),
+      'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(FEED_URL),
+    ];
+    // ─────────────────────────────────────────────────────────
+
+    function formatDate(str) {
+      const d = new Date(str);
+      if (isNaN(d)) return str;
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function truncate(text, max) {
+      if (!text) return '';
+      const clean = text.replace(/<[^>]*>/g, '').replace(/&[a-z]+;/gi, ' ').trim();
+      return clean.length > max ? clean.slice(0, max).trimEnd() + '...' : clean;
+    }
+
+    async function fetchFeed() {
+      // Try each proxy in order
+      for (const proxy of PROXIES) {
+        try {
+          const res = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+          if (!res.ok) continue;
+          const text = await res.text();
+          // allorigins wraps in JSON; others return raw XML
+          let xmlText = text;
+          try {
+            const json = JSON.parse(text);
+            if (json.contents) xmlText = json.contents;
+          } catch (_) { /* raw XML, use as-is */ }
+          const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
+          const items = Array.from(xml.querySelectorAll('item'));
+          if (items.length > 0) return items;
+        } catch (e) {
+          console.warn('Proxy failed:', proxy, e);
+        }
+      }
+      throw new Error('All proxies failed');
+    }
+
+    async function loadPodcast() {
+      const featuredEl = document.getElementById('featured');
+      const archiveEl  = document.getElementById('archive');
+
+      try {
+        const items = await fetchFeed();
+
+        if (!items.length) throw new Error('No episodes found in feed.');
+
+        // ── FEATURED (top 3) ──────────────────────────────────
+        const top3 = items.slice(0, 3);
+        let featuredHTML = '';
+
+        top3.forEach((item, i) => {
+          const title   = item.querySelector('title')?.textContent || 'Untitled';
+          const link    = item.querySelector('link')?.textContent
+                       || item.querySelector('enclosure')?.getAttribute('url')
+                       || '#';
+          const pubDate = formatDate(item.querySelector('pubDate')?.textContent || '');
+          const desc    = truncate(
+            item.querySelector('description')?.textContent
+            || item.querySelector('summary')?.textContent, 180
+          );
+          const epNum   = items.length - i;
+          const isNew   = i === 0;
+
+          if (i === 0) {
+            featuredHTML += `
+              <a class="card hero fade-in" href="${link}" target="_blank" rel="noopener">
+                ${isNew ? '<span class="new-badge">New</span>' : ''}
+                <div>
+                  <p class="card-episode-num">Episode ${epNum}</p>
+                  <h2 class="card-title">${title}</h2>
+                  <p class="card-date">${pubDate}</p>
+                </div>
+                <div>
+                  <p class="card-desc">${desc}</p>
+                  <span class="card-cta">Listen now</span>
+                </div>
+              </a>`;
+          } else {
+            featuredHTML += `
+              <a class="card fade-in" href="${link}" target="_blank" rel="noopener" style="animation-delay:${i * 0.08}s">
+                <p class="card-episode-num">Episode ${epNum}</p>
+                <h3 class="card-title">${title}</h3>
+                <p class="card-date">${pubDate}</p>
+                <p class="card-desc">${truncate(desc, 120)}</p>
+                <span class="card-cta">Listen</span>
+              </a>`;
+          }
+        });
+
+        featuredEl.innerHTML = featuredHTML;
+
+        // ── ARCHIVE (all, skip first 3) ───────────────────────
+        let archiveHTML = '';
+        items.slice(3).forEach((item, i) => {
+          const title   = item.querySelector('title')?.textContent || 'Untitled';
+          const link    = item.querySelector('link')?.textContent || '#';
+          const pubDate = formatDate(item.querySelector('pubDate')?.textContent || '');
+          const epNum   = items.length - 3 - i;
+
+          archiveHTML += `
+            <a class="archive-item" href="${link}" target="_blank" rel="noopener">
+              <span class="archive-num">Ep. ${epNum}</span>
+              <span class="archive-title">${title}</span>
+              <span class="archive-date">${pubDate}</span>
+            </a>`;
+        });
+
+        archiveEl.innerHTML = archiveHTML || '<p class="status">No archived episodes yet.</p>';
+
+      } catch (err) {
+        const msg = `<p class="status">Could not load episodes. <a href="https://rss.com/podcasts/the-aligned-edit-with-veronica-dietz/" style="color:var(--orange)">Browse on RSS.com</a></p>`;
+        featuredEl.innerHTML = msg;
+        archiveEl.innerHTML  = '';
+        console.error('Feed error:', err);
+      }
+    }
+
+    loadPodcast();
+  </script>
+</body>
+</html>
