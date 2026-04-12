@@ -1,0 +1,79 @@
+name: Refresh Episodes
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # runs every 4 hours automatically
+  workflow_dispatch:          # lets you trigger it manually from GitHub
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Fetch RSS feed and generate episodes.json
+        run: |
+          python3 - <<'EOF'
+          import urllib.request, xml.etree.ElementTree as ET, json, html, re
+
+          FEED = "https://media.rss.com/the-aligned-edit-with-veronica-dietz/feed.xml"
+
+          req = urllib.request.Request(FEED, headers={"User-Agent": "Mozilla/5.0"})
+          with urllib.request.urlopen(req, timeout=15) as r:
+              raw = r.read()
+
+          root = ET.fromstring(raw)
+          ns   = {"itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd"}
+          items = root.findall(".//item")
+
+          def clean(text):
+              if not text: return ""
+              text = re.sub(r"<[^>]+>", "", text)
+              text = html.unescape(text)
+              return text.strip()
+
+          def trunc(text, n):
+              t = clean(text)
+              return t[:n].rstrip() + "..." if len(t) > n else t
+
+          def fmt_date(s):
+              if not s: return ""
+              from email.utils import parsedate_to_datetime
+              try:
+                  return parsedate_to_datetime(s).strftime("%b %-d, %Y")
+              except Exception:
+                  return s
+
+          episodes = []
+          total = len(items)
+          for i, item in enumerate(items):
+              title   = clean(item.findtext("title") or "")
+              link    = (item.findtext("link") or "").strip()
+              pubDate = fmt_date(item.findtext("pubDate") or "")
+              desc    = trunc(item.findtext("description") or item.findtext("{http://www.itunes.com/dtds/podcast-1.0.dtd}summary") or "", 200)
+              epNum   = total - i
+              episodes.append({
+                  "title":   title,
+                  "link":    link,
+                  "pubDate": pubDate,
+                  "desc":    desc,
+                  "epNum":   epNum
+              })
+
+          with open("episodes.json", "w") as f:
+              json.dump(episodes, f, ensure_ascii=False, indent=2)
+
+          print(f"Wrote {len(episodes)} episodes to episodes.json")
+          EOF
+
+      - name: Commit episodes.json if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add episodes.json
+          git diff --cached --quiet || git commit -m "chore: refresh episodes.json"
+          git push
