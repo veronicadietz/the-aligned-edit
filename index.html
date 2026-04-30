@@ -23,10 +23,9 @@
   <meta name="twitter:description" content="A diagnostic podcast for identity-led founders. Each episode locates the load-bearing issue underneath the surface problem." />
   <meta name="twitter:image"       content="https://media.rss.com/the-aligned-edit-with-veronica-dietz/20251218_061241_3a62d96816a4d16617be9be4466d55af.png" />
 
-  <!-- Crawler directives -->
   <meta name="robots" content="index, follow" />
 
-  <!-- Podcast structured data (JSON-LD) -->
+  <!-- Podcast structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,26 +34,12 @@
     "description": "A diagnostic podcast for identity-led founders. Each episode examines the structural decisions, identity patterns, and strategic assumptions that shape whether a business moves or stalls.",
     "url": "https://listen.veronicadietz.com/",
     "image": "https://media.rss.com/the-aligned-edit-with-veronica-dietz/20251218_061241_3a62d96816a4d16617be9be4466d55af.png",
-    "author": {
-      "@type": "Person",
-      "name": "Veronica Dietz",
-      "url": "https://veronicadietz.com"
-    },
-    "publisher": {
-      "@type": "Person",
-      "name": "Veronica Dietz",
-      "url": "https://veronicadietz.com"
-    },
+    "author": { "@type": "Person", "name": "Veronica Dietz", "url": "https://veronicadietz.com" },
+    "publisher": { "@type": "Person", "name": "Veronica Dietz", "url": "https://veronicadietz.com" },
     "webFeed": "https://media.rss.com/the-aligned-edit-with-veronica-dietz/feed.xml",
     "potentialAction": [
-      {
-        "@type": "ListenAction",
-        "target": "https://open.spotify.com/show/2QikcYUpQiOXq9zy6pSvab"
-      },
-      {
-        "@type": "ListenAction",
-        "target": "https://podcasts.apple.com/us/podcast/the-aligned-edit-with-veronica-dietz/id1860989748"
-      }
+      { "@type": "ListenAction", "target": "https://open.spotify.com/show/2QikcYUpQiOXq9zy6pSvab" },
+      { "@type": "ListenAction", "target": "https://podcasts.apple.com/us/podcast/the-aligned-edit-with-veronica-dietz/id1860989748" }
     ]
   }
   </script>
@@ -62,21 +47,22 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23283618'/><text x='16' y='22' text-anchor='middle' font-size='18' font-family='serif' fill='%23C4500A'>V</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Instrument+Serif:ital@0;1&family=Caveat&family=DM+Mono:wght@400;500&family=Merriweather:wght@300;400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --orange: #C4500A;
       --green: #283618;
+      --gold: #DDA15E;
       --cream: #FAF7F2;
+      --cream-warm: #F2E9D6;
       --cream-dark: #F0EBE3;
       --text: #1a1a18;
       --muted: #7a7468;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--cream);
@@ -86,108 +72,307 @@
       line-height: 1.7;
     }
 
-    /* ─── HEADER ─── */
-    header {
+    /* ─── HERO ─── */
+    .hero {
       background: var(--green);
       color: var(--cream);
-      padding: 64px 32px 56px;
+      padding: 80px 40px 100px;
       position: relative;
       overflow: hidden;
+      min-height: 720px;
     }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 320px; height: 320px;
-      background: var(--orange);
-      border-radius: 50%;
-      opacity: 0.12;
-    }
-
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -40px; left: 40px;
-      width: 180px; height: 180px;
-      border: 1px solid rgba(250,247,242,0.15);
-      border-radius: 50%;
-    }
-
-    .header-inner {
-      max-width: 780px;
+    .hero-inner {
+      max-width: 1200px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 60px;
+      align-items: center;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
-    .eyebrow {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
+    .hero-copy { position: relative; z-index: 3; }
+
+    .chap-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      line-height: 1.15;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      line-height: 1.05;
       color: var(--cream);
-      margin-bottom: 20px;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+    h1 .it { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.55;
+      color: rgba(250,247,242,0.78);
+      max-width: 520px;
+      margin-bottom: 40px;
     }
 
-    .header-desc {
-      font-size: 14px;
-      color: rgba(250,247,242,0.7);
-      max-width: 480px;
-      line-height: 1.8;
-    }
-
+    /* ─── LISTEN BUTTONS ─── */
     .listen-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
+      gap: 14px;
     }
 
     .listen-links a {
-      display: inline-block;
-      padding: 9px 18px;
-      border: 1px solid rgba(250,247,242,0.3);
-      border-radius: 2px;
-      color: var(--cream);
-      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      font-family: 'DM Mono', monospace;
       font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      font-weight: 500;
     }
 
-    .listen-links a:hover {
+    .cta-primary {
+      background: var(--orange);
+      color: var(--cream);
+      box-shadow: 4px 4px 0 rgba(250,247,242,0.15);
+    }
+    .cta-primary:hover {
+      transform: translate(-2px,-2px);
+      box-shadow: 6px 6px 0 rgba(250,247,242,0.25);
+    }
+
+    .cta-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1.5px solid rgba(250,247,242,0.4);
+    }
+    .cta-ghost:hover {
       background: rgba(250,247,242,0.08);
-      border-color: rgba(250,247,242,0.5);
+      border-color: var(--cream);
     }
 
-    /* ─── MAIN ─── */
+    /* ─── HERO COLLAGE (right side) ─── */
+    .hero-collage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 540px;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: 360px;
+      padding: 16px 16px 56px;
+      background: var(--cream);
+      box-shadow: 12px 12px 0 rgba(0,0,0,0.35), 0 24px 48px rgba(0,0,0,0.4);
+      transform: rotate(-3deg);
+      z-index: 3;
+      animation: floatY 6s ease-in-out infinite;
+    }
+    .photo-frame img {
+      width: 100%;
+      display: block;
+    }
+    .tape-1 {
+      position: absolute;
+      top: -12px; left: 38px;
+      width: 88px; height: 22px;
+      background: rgba(221,161,94,0.85);
+      transform: rotate(-6deg);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+    }
+    .tape-2 {
+      position: absolute;
+      top: -12px; right: 38px;
+      width: 88px; height: 22px;
+      background: rgba(221,161,94,0.85);
+      transform: rotate(4deg);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+    }
+    .photo-cap {
+      position: absolute;
+      bottom: 14px; left: 0; right: 0;
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      color: var(--green);
+    }
+
+    @keyframes floatY {
+      0%,100% { transform: rotate(-3deg) translate(0,0); }
+      50%     { transform: rotate(-2deg) translate(0,-8px); }
+    }
+
+    /* floating sticker objects */
+    .stk {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .stk-eye {
+      bottom: 6%;
+      right: -8%;
+      width: 130px;
+      animation: drift1 9s ease-in-out infinite;
+    }
+    .stk-eye img { width: 100%; height: auto; transform: rotate(12deg); display: block; }
+
+    .stk-panther {
+      top: -6%;
+      left: -10%;
+      width: 110px;
+      z-index: 4;
+      animation: drift2 11s ease-in-out infinite -2s;
+    }
+    .stk-panther img { width: 100%; height: auto; transform: rotate(-14deg); display: block; }
+
+    .stk-orange {
+      top: 38%;
+      right: -14%;
+      width: 90px;
+      z-index: 4;
+      animation: drift3 8s ease-in-out infinite -1s;
+    }
+    .stk-orange img { width: 100%; height: auto; transform: rotate(8deg); display: block; }
+
+    .stk-star-1 {
+      top: 8%;
+      right: 4%;
+      width: 50px;
+      z-index: 6;
+      animation: drift1 7s ease-in-out infinite;
+    }
+    .stk-star-1 img { width: 100%; height: auto; transform: rotate(15deg); display: block; }
+
+    .stk-star-2 {
+      bottom: 22%;
+      left: -16%;
+      width: 38px;
+      z-index: 6;
+      animation: drift2 9s ease-in-out infinite -3s;
+    }
+    .stk-star-2 img { width: 100%; height: auto; transform: rotate(-22deg); display: block; }
+
+    .stk-stamp {
+      top: 12%;
+      left: -14%;
+      z-index: 7;
+      animation: drift3 10s ease-in-out infinite -1s;
+    }
+    .stamp-tag {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--cream);
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transform: rotate(-12deg);
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    }
+
+    .stk-lbl {
+      bottom: -4%;
+      right: 2%;
+      z-index: 7;
+      animation: drift1 8s ease-in-out infinite -1.5s;
+    }
+    .label-card {
+      display: inline-block;
+      padding: 10px 18px;
+      background: var(--cream);
+      color: var(--green);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transform: rotate(-6deg);
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.25);
+      line-height: 1.5;
+    }
+    .label-card .accent { color: var(--orange); }
+
+    @keyframes drift1 {
+      0%,100% { transform: translate(0,0) rotate(0); }
+      50%     { transform: translate(-4px,-6px) rotate(2deg); }
+    }
+    @keyframes drift2 {
+      0%,100% { transform: translate(0,0) rotate(0); }
+      50%     { transform: translate(5px,-4px) rotate(-2deg); }
+    }
+    @keyframes drift3 {
+      0%,100% { transform: translate(0,0) rotate(0); }
+      50%     { transform: translate(-3px,5px) rotate(1deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo-frame, .stk {
+        animation: none !important;
+      }
+    }
+
+    /* ─── MOBILE HERO ─── */
+    @media (max-width: 900px) {
+      .hero { padding: 60px 24px 100px; min-height: auto; }
+      .hero-inner { grid-template-columns: 1fr; gap: 80px; }
+      .hero-collage { order: -1; min-height: 540px; }
+      .photo-frame { width: 280px; }
+      .stk-panther { width: 90px; top: -4%; left: -6%; }
+      .stk-eye { width: 100px; bottom: -2%; right: -4%; }
+      .stk-orange { display: none; }
+      .stk-star-1 { width: 40px; top: 4%; right: 2%; }
+      .stk-star-2 { display: none; }
+      .stk-stamp { top: 6%; left: -8%; }
+      .stamp-tag { font-size: 9px; padding: 6px 12px; }
+      .stk-lbl { bottom: -22%; right: auto; left: 50%; transform: translateX(-50%); top: auto; }
+      .label-card { font-size: 9px; padding: 8px 14px; }
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 2.2rem; }
+      .listen-links { flex-direction: column; align-items: stretch; }
+      .listen-links a { justify-content: center; }
+    }
+
+    /* ─── MAIN CONTENT ─── */
     main {
-      max-width: 780px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 32px 80px;
     }
 
-    /* ─── FEATURED ─── */
     .section-label {
-      font-size: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--orange);
-      padding: 52px 0 24px;
+      padding: 72px 0 24px;
       border-bottom: 1px solid var(--cream-dark);
       margin-bottom: 32px;
     }
@@ -200,12 +385,8 @@
     }
 
     @media (min-width: 600px) {
-      .featured-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      .featured-grid .card:first-child {
-        grid-column: 1 / -1;
-      }
+      .featured-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .featured-grid .card:first-child { grid-column: 1 / -1; }
     }
 
     .card {
@@ -218,19 +399,14 @@
       transition: transform 0.2s, box-shadow 0.2s;
       position: relative;
     }
-
     .card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(40,54,24,0.08);
     }
-
-    .card.hero {
-      display: grid;
-      gap: 0;
-    }
+    .card.hero-card { display: grid; gap: 0; }
 
     @media (min-width: 600px) {
-      .card.hero {
+      .card.hero-card {
         grid-template-columns: 1fr 1fr;
         gap: 40px;
         align-items: start;
@@ -239,6 +415,7 @@
     }
 
     .card-episode-num {
+      font-family: 'DM Mono', monospace;
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.18em;
@@ -255,16 +432,14 @@
       color: var(--text);
       margin-bottom: 12px;
     }
-
-    .card.hero .card-title {
-      font-size: clamp(1.3rem, 3vw, 1.75rem);
-    }
+    .card.hero-card .card-title { font-size: clamp(1.3rem, 3vw, 1.75rem); }
 
     .card-date {
       font-size: 11px;
       color: var(--muted);
       letter-spacing: 0.05em;
       margin-bottom: 14px;
+      font-family: 'DM Mono', monospace;
     }
 
     .card-desc {
@@ -276,37 +451,31 @@
     .card-cta {
       display: inline-block;
       margin-top: 20px;
+      font-family: 'DM Mono', monospace;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--orange);
       text-decoration: none;
     }
-
-    .card-cta::after {
-      content: ' →';
-    }
+    .card-cta::after { content: ' →'; }
 
     .new-badge {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 20px; right: 20px;
       background: var(--orange);
       color: white;
+      font-family: 'DM Mono', monospace;
       font-size: 9px;
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 2px;
+      padding: 5px 11px;
     }
 
     /* ─── ARCHIVE ─── */
-    .archive-list {
-      display: flex;
-      flex-direction: column;
-    }
+    .archive-list { display: flex; flex-direction: column; }
 
     .archive-item {
       display: grid;
@@ -319,14 +488,11 @@
       color: inherit;
       transition: color 0.15s;
     }
-
     .archive-item:first-child { border-top: 1px solid var(--cream-dark); }
-
-    .archive-item:hover .archive-title {
-      color: var(--orange);
-    }
+    .archive-item:hover .archive-title { color: var(--orange); }
 
     .archive-num {
+      font-family: 'DM Mono', monospace;
       font-size: 10px;
       font-weight: 500;
       letter-spacing: 0.12em;
@@ -343,51 +509,105 @@
     }
 
     .archive-date {
+      font-family: 'DM Mono', monospace;
       font-size: 11px;
       color: var(--muted);
       white-space: nowrap;
     }
 
-    /* ─── LOADING / ERROR ─── */
+    /* ─── LOADING ─── */
     .status {
       padding: 60px 0;
       text-align: center;
       color: var(--muted);
       font-size: 13px;
     }
-
     .spinner {
-      width: 24px;
-      height: 24px;
+      width: 24px; height: 24px;
       border: 2px solid var(--cream-dark);
       border-top-color: var(--orange);
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
       margin: 0 auto 16px;
     }
-
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* ─── FOOTER ─── */
-    footer {
-      background: var(--green);
-      color: rgba(250,247,242,0.5);
-      text-align: center;
-      padding: 32px;
-      font-size: 12px;
-      letter-spacing: 0.05em;
+    .vd-foot {
+      background: #283618;
+      color: #DDA15E;
+      padding: 80px 40px 40px;
+    }
+    .vd-foot * { box-sizing: border-box; }
+    .vd-foot-in {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 60px;
+    }
+    .vd-foot-brand {
+      margin-bottom: 20px;
+      max-width: 280px;
+    }
+    .vd-foot-brand img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .vd-foot-note {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba(250,247,242,0.7);
+      max-width: 280px;
+      margin: 0;
+    }
+    .vd-foot h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #DDA15E;
+      margin: 0 0 20px;
+      font-weight: 500;
+    }
+    .vd-foot ul { list-style: none; padding: 0; margin: 0; }
+    .vd-foot ul li { margin-bottom: 12px; }
+    .vd-foot ul li a {
+      color: #FAF7F2;
+      text-decoration: none;
+      font-family: 'Merriweather', serif;
+      font-weight: 300;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+    .vd-foot ul li a:hover { color: #DDA15E; }
+    .vd-foot-bot {
+      max-width: 1280px;
+      margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(221,161,94,0.3);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: rgba(221,161,94,0.7);
     }
 
-    footer a {
-      color: var(--orange);
-      text-decoration: none;
+    @media (max-width: 900px) {
+      .vd-foot-in { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .vd-foot { padding: 60px 24px 30px; }
+      .vd-foot-in { grid-template-columns: 1fr; gap: 40px; }
+      .vd-foot-bot { flex-direction: column; gap: 8px; }
     }
 
     /* ─── FADE IN ─── */
-    .fade-in {
-      animation: fadeIn 0.4s ease both;
-    }
-
+    .fade-in { animation: fadeIn 0.4s ease both; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -396,20 +616,68 @@
 </head>
 <body>
 
-  <header>
-    <div class="header-inner">
-      <p class="eyebrow">Veronica Dietz</p>
-      <h1>The Aligned Edit</h1>
-      <p class="header-desc">A diagnostic podcast for identity-led founders. Each episode locates the load-bearing issue underneath the surface problem.</p>
-      <div class="listen-links">
-        <a href="https://open.spotify.com/show/2QikcYUpQiOXq9zy6pSvab" target="_blank" rel="noopener">Spotify</a>
-        <a href="https://podcasts.apple.com/us/podcast/the-aligned-edit-with-veronica-dietz/id1860989748" target="_blank" rel="noopener">Apple Podcasts</a>
-        <a href="https://media.rss.com/the-aligned-edit-with-veronica-dietz/feed.xml" target="_blank" rel="noopener">RSS Feed</a>
-        <a href="https://veronicadietz.com" target="_blank" rel="noopener">veronicadietz.com</a>
-      </div>
-    </div>
-  </header>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-inner">
 
+      <div class="hero-copy">
+        <p class="chap-tag">Veronica Dietz &mdash; Diagnostic Strategy</p>
+        <h1>The <span class="it">Aligned</span> Edit</h1>
+        <p class="hero-sub">A diagnostic podcast for identity-led founders. Each episode locates the load-bearing issue underneath the surface problem.</p>
+
+        <div class="listen-links">
+          <a href="https://open.spotify.com/show/2QikcYUpQiOXq9zy6pSvab" target="_blank" rel="noopener" class="cta-primary">Spotify</a>
+          <a href="https://podcasts.apple.com/us/podcast/the-aligned-edit-with-veronica-dietz/id1860989748" target="_blank" rel="noopener" class="cta-ghost">Apple Podcasts</a>
+          <a href="https://media.rss.com/the-aligned-edit-with-veronica-dietz/feed.xml" target="_blank" rel="noopener" class="cta-ghost">RSS Feed</a>
+          <a href="https://veronicadietz.com" target="_blank" rel="noopener" class="cta-ghost">veronicadietz.com</a>
+        </div>
+      </div>
+
+      <div class="hero-collage">
+
+        <!-- Polaroid -->
+        <div class="photo-frame">
+          <div class="tape-1"></div>
+          <div class="tape-2"></div>
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69eec3319fe87a999442e6cf.png" alt="Veronica Dietz" />
+          <div class="photo-cap">the aligned edit &mdash; v.d.</div>
+        </div>
+
+        <!-- Stickers -->
+        <div class="stk stk-panther">
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69f1165adfacb1bd3142636c.png" alt="" />
+        </div>
+
+        <div class="stk stk-eye">
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69eebbcd05d4199001d796c8.png" alt="" />
+        </div>
+
+        <div class="stk stk-orange">
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69f0fc77eecc3af70afdc5ee.png" alt="" />
+        </div>
+
+        <div class="stk stk-star-1">
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69f107d8dfacb1bd313e4d08.png" alt="" />
+        </div>
+
+        <div class="stk stk-star-2">
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69f107d8dfacb1bd313e4d08.png" alt="" />
+        </div>
+
+        <div class="stk stk-stamp">
+          <span class="stamp-tag">&#10022; The Read &#10022;</span>
+        </div>
+
+        <div class="stk stk-lbl">
+          <span class="label-card">&#9737; Virgo &nbsp;&middot;&nbsp; &#9789; Leo<br><span class="accent">1H / 11H</span></span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ EPISODES ============ -->
   <main>
     <p class="section-label">Recent Episodes</p>
     <div id="featured" class="featured-grid">
@@ -422,18 +690,52 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; <span id="year"></span> <a href="https://veronicadietz.com">Veronica Dietz</a> &mdash; VD Advisory Group</p>
+  <!-- ============ FOOTER ============ -->
+  <footer class="vd-foot">
+    <div class="vd-foot-in">
+      <div>
+        <div class="vd-foot-brand">
+          <img src="https://assets.cdn.filesafe.space/erNBMEPHr5mwBKO660ir/media/69f2a0fe590487fe57e5bb1a.png" alt="Veronica Dietz" />
+        </div>
+        <p class="vd-foot-note">Diagnostic strategy for capable founders who are working hard on the wrong problem.</p>
+      </div>
+      <div>
+        <h4>Advisory</h4>
+        <ul>
+          <li><a href="https://www.veronicadietz.com">Veronica Dietz</a></li>
+          <li><a href="https://www.veronicadietz.com/the-read">The Read</a></li>
+          <li><a href="https://www.veronicadietz.com/the-direction-session">Direction Session</a></li>
+          <li><a href="https://www.veronicadietz.com/stop-starting-over">Stop Starting Over</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="http://listen.veronicadietz.com/">The Aligned Edit Podcast</a></li>
+          <li><a href="https://veronicadietz.blogspot.com/">The Observer's Notebook</a></li>
+          <li><a href="https://www.veronicadietz.com/why-this-feels-off">Why This Feels Off</a></li>
+          <li><a href="https://www.veronicadietz.com/the-offer-audit">Offer Audit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://www.threads.com/@theveronicadietz">Threads</a></li>
+          <li><a href="https://www.linkedin.com/in/veronicadietz">LinkedIn</a></li>
+          <li><a href="https://rss.com/podcasts/the-aligned-edit-with-veronica-dietz/">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="vd-foot-bot">
+      <div>&copy; <span id="year"></span> &nbsp;&middot;&nbsp; VERONICA DIETZ</div>
+      <div>LAS VEGAS &nbsp;&middot;&nbsp; COSTA MESA</div>
+    </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ─── CONFIG ───────────────────────────────────────────────
-    // episodes.json is generated by the GitHub Action (fetch-feed.yml)
-    // It lives in the same repo root, served as a static file
     const EPISODES_JSON = './episodes.json';
-    // ─────────────────────────────────────────────────────────
 
     function formatDate(str) {
       const d = new Date(str);
@@ -458,7 +760,6 @@
 
         if (!items.length) throw new Error('No episodes found.');
 
-        // ── FEATURED (top 3) ──────────────────────────────────
         const top3 = items.slice(0, 3);
         let featuredHTML = '';
 
@@ -468,7 +769,7 @@
 
           if (i === 0) {
             featuredHTML += `
-              <a class="card hero fade-in" href="${link}" target="_blank" rel="noopener">
+              <a class="card hero-card fade-in" href="${link}" target="_blank" rel="noopener">
                 ${isNew ? '<span class="new-badge">New</span>' : ''}
                 <div>
                   <p class="card-episode-num">Episode ${epNum}</p>
@@ -494,7 +795,6 @@
 
         featuredEl.innerHTML = featuredHTML;
 
-        // ── ARCHIVE (all, skip first 3) ───────────────────────
         let archiveHTML = '';
         items.slice(3).forEach((ep) => {
           archiveHTML += `
